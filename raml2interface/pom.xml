@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.example.ramlgenerator</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>raml2interface</artifactId>
+
+    <properties>
+        <ramlplugin.pathRamlFile>src/main/resources/raml/base0.raml</ramlplugin.pathRamlFile>
+        <ramlplugin.outputPath>src/main/java</ramlplugin.outputPath>
+        <ramlplugin.basePackage>generated.com.gen.wow</ramlplugin.basePackage>
+
+        <spring-webmvc.version>4.2.6.RELEASE</spring-webmvc.version>
+        <jackson.version>2.7.4</jackson.version>
+        <springmvc-raml-plugin.version>0.5.1</springmvc-raml-plugin.version>
+        <commons-lang2.version>2.6</commons-lang2.version>
+
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-webmvc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang2.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>com.phoenixnap.oss</groupId>
+                <artifactId>springmvc-raml-plugin</artifactId>
+                <version>${springmvc-raml-plugin.version}</version>
+
+                <configuration>
+                    <ramlPath>${ramlplugin.pathRamlFile}</ramlPath>
+                    <!--schemaLocation></schemaLocation-->
+                    <outputRelativePath>${ramlplugin.outputPath}</outputRelativePath>
+                    <addTimestampFolder>false</addTimestampFolder>
+                    <basePackage>${ramlplugin.basePackage}</basePackage>
+                    <baseUri>/api</baseUri>
+                    <schemaUseLongIntegers>false</schemaUseLongIntegers>
+                    <seperateMethodsByContentType>false</seperateMethodsByContentType>
+                    <rule>com.phoenixnap.oss.ramlapisync.generation.rules.Spring4ControllerInterfaceRule</rule>
+                    <ruleConfiguration>
+                    </ruleConfiguration>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-springmvc-endpoints</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate-springmvc-endpoints</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
