@@ -1,10 +1,10 @@
-# ramlgenerator
+# Raml Generator
 Test Raml Generator to Spring MVC
 
 Testing and example of Spring MVC-RAML Synchronizer Plugin (https://github.com/phoenixnap/springmvc-raml-plugin/tree/master/springmvc-raml-plugin#usage-3---generating-springmvc-server-endpoints-from-a-raml-file)
 
 --
-Generate interface:
+Generate interface :
 
 	* Indicate the path of the raml
 	* Indicate the package
@@ -23,7 +23,7 @@ Generate interface:
  	+ Check : Validations
  	+ Check : Lombock
  	
- Generar code 
+ Generar code :
 
  	* Create the implementations 
 
